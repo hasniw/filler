@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/18 18:45:09 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/19 01:47:01 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ typedef struct	s_piece
 {
 	int			width;
 	int			height;
-	int			cnt;
 	t_point		*p;
-	char		**square;
+	char		**board;
 }				t_piece;
 
 typedef struct	s_map
@@ -67,5 +66,13 @@ int				ft_init_player(t_args *args, char *line);
 /*
 ** MAP
 */
+
+int				ft_handle_map(t_args *args);
+
+/*
+** PIECE
+*/
+
+int				ft_handle_piece(t_args *args);
 
 #endif

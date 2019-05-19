@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_handle_map.c                                    :+:      :+:    :+:   */
+/*   ft_handle_piece.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/19 02:27:47 by wahasni          ###   ########.fr       */
+/*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
+/*   Updated: 2019/05/19 02:27:39 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,14 @@ static int	ft_check_line(t_args *args, int i)
 {
 	int j;
 
-	j = 3;
-	if (ft_count_word(args->line, ' ') != 1 || args->line[3] != ' '
-        || ft_strlen(args->line) != (size_t)args->map.width
-        || ft_isndigit(args->line, 3) != 3)
-    {
-        while (i > 0)
-            free(args->map.board[--i]);
-        free(args->line);
-        return (1);
-    }
+	j = 0;
 	while (args->line[j])
 	{
-		if (args->line[j] != 'O' && args->line != 'X'
-			&& args->line != 'o' && args->line != 'x')
+		if ((args->line[j] != '.' && args->line != '*') 
+			|| (ft_strlen(args->line) != (size_t)args->piece.width))
 		{
 			while (i > 0)
-            	free(args->map.board[--i]);
+            	free(args->piece.board[--i]);
         	free(args->line);
         	return (1);
 		}
@@ -41,17 +32,17 @@ static int	ft_check_line(t_args *args, int i)
 	return (0);
 }
 
-static int	ft_map_assign(t_args *args)
+static int	ft_piece_assign(t_args *args)
 {
 	int	i;
-	int	ret;
+	int ret;
 
 	i = 0;
-	while (i < args->map.height)
+	while (i < args->piece.height)
 	{
 		if ((ret = get_next_line(0, &args->line)) != 1)
 		{
-		    if (ret == 0)
+			if (ret == 0)
 		            free(args->line);
 		    while (i > 0)
 		            free(args->map.board[--i]);
@@ -59,15 +50,15 @@ static int	ft_map_assign(t_args *args)
 		}
 		if (ft_check_line(args, i))
 			return (1);
-		args->map.board[i++] = ft_strsub(args->line, 4, (size_t)args->map.width);
-		// i++;
-        ft_strdel(args->line);
+		args->piece.board[i++] = ft_strsub(args->line, 4, (size_t)args->map.width);
+		//i++;
+		ft_strdel(args->line);
 	}
-	args->map.board[i] = NULL;
+	args->piece.board[i] = NULL;
 	return (0);
 }
 
-static int	ft_check_plateau(t_args *args)
+static int	ft_check_first_line(t_args *args)
 {
 	int	ret;
 
@@ -84,24 +75,23 @@ static int	ft_check_plateau(t_args *args)
 	}
 	args->tab = ft_strsplit(args->line, ' ');
 	ft_strdel(&args->line);
-	if (ft_strcmp("Plateau", args->tab[0]))
+	if (ft_strcmp("Piece", args->tab[0]))
 		return (1);
-	args->map.height = ft_atoi(args->tab[1]);
-	args->map.width = ft_atoi(args->tab[2]);
+	args->piece.height = ft_atoi(args->tab[1]);
+	args->piece.width = ft_atoi(args->tab[2]);
 	// free_tab();
-	if (args->map.height < 1 || args->map.width < 1)
+	if (args->piece.height < 1 || args->piece.width < 1)
 		return (1);
-	////
 	return (0);
 }
 
-int		ft_handle_map(t_args *args)
+int	ft_handle_piece(t_args *args)
 {
-	if (ft_check_plateau(args))
+	if (ft_check_first_line(args))
 		return (1);
-	if (!(args->map.board = (char**)malloc(sizeof(char*) * args->map.height)))
+	if (!(args->piece.board = (char**)malloc(sizeof(char*) * args->piece.height)))
 		return (1);
-	if (ft_map_assign(args))
+	if (ft_piece_assign(args))
 		return (1);
 	return (0);
 }

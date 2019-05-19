@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/17 22:26:00 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/19 19:57:05 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,9 @@ int 		main(void)
 	{
 		if (ft_handle_map(&args))
 			return (1);
-		
+		if (ft_handle_piece(&args))
+			return (1);
+		end = ft_resolve(&args);
 	}
 	return (0);
 }
