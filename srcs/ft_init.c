@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 01:31:39 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/18 03:00:38 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/22 00:56:58 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_init_map(t_args *args)
 	{
 		if (!(args->map.board[i] = (char*)malloc(sizeof(char)
 		* args->map.width + 1)))
-			return (free_index(args, i, 1));
+			return (1);
 		ft_bzero(args->map.board[i], args->map.width);
 		i++;
 	}

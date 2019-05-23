@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/19 02:27:47 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/22 00:55:22 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int	ft_check_line(t_args *args, int i)
     }
 	while (args->line[j])
 	{
-		if (args->line[j] != 'O' && args->line != 'X'
-			&& args->line != 'o' && args->line != 'x')
+		if (args->line[j] != 'O' && args->line[j] != 'X'
+			&& args->line[j] != 'o' && args->line[j] != 'x')
 		{
 			while (i > 0)
             	free(args->map.board[--i]);
@@ -61,7 +61,7 @@ static int	ft_map_assign(t_args *args)
 			return (1);
 		args->map.board[i++] = ft_strsub(args->line, 4, (size_t)args->map.width);
 		// i++;
-        ft_strdel(args->line);
+        ft_strdel(&args->line);
 	}
 	args->map.board[i] = NULL;
 	return (0);

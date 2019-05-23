@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/19 01:47:01 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/22 00:44:41 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct	s_args
 */
 
 int				ft_count_word(char *str, char c);
+int				ft_isndigit(char *s, int n);
 
 /*
 ** INIT PLAYER

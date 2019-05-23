@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 04:38:14 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/18 04:40:18 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/22 01:04:25 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/filler.h"
+#include "../include/filler.h"
 
 int ft_isndigit(char *s, int n)
 {
@@ -23,5 +23,5 @@ int ft_isndigit(char *s, int n)
             break;
         i++;
     }
-    return (i == ft_strlen(s));
+    return (i == (int)ft_strlen(s));
 }
