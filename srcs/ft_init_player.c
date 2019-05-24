@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:59:43 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/23 04:47:03 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/24 00:09:41 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int         ft_init_player(t_args *args, char *line)
         return (1);
 	}
     // line = malloc(500);
-    // line = "$$$ exec p1 : [./wahasni.filler]]\n";
+    // line = "$$$ exec p1 : [./wahasni.filler]\n";
     // printf("%d\n", ft_count_word(line, ' '));
     if (ft_count_word(line, ' ') != 4)
     {

@@ -6,31 +6,74 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/22 00:55:22 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/24 03:35:49 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/filler.h"
 
+static int	ft_check_first_line(t_args *args)
+{
+	int		ret;
+	int		i;
+
+	i = -1;
+	if ((ret = get_next_line(0, &args->line)) != 1)
+	{
+	    if (ret == 0)
+	        free(args->line);
+	    return (1);
+	}
+	while (++i < 4)
+	{
+		if (args->line[i] != ' ')
+		{
+			ft_strdel(&args->line);
+			printf("first_line space error\n");
+			return (1);
+		}
+	}
+	while (args->line[i])
+	{
+		if (!(ft_isdigit(args->line[i++])))
+		{
+			ft_strdel(&args->line);
+			printf("first_line digit error\n");
+			return (1);
+		}
+	}
+	return (0);
+}
+
 static int	ft_check_line(t_args *args, int i)
 {
 	int j;
 
-	j = 3;
+	j = 4;
+	// printf("isndigit : %d\n", ft_isndigit(args->line, 3));
+	// printf("count_word : %d\n", ft_count_word(args->line, ' '));
+	// printf("strlen : %d\n", (int)ft_strlen(args->line));
+	// printf("width : %d\n", args->map.width);
+	// printf("args->line[3] : '%c'\n", args->line[3]);
 	if (ft_count_word(args->line, ' ') != 1 || args->line[3] != ' '
-        || ft_strlen(args->line) != (size_t)args->map.width
-        || ft_isndigit(args->line, 3) != 3)
+        || ft_strlen(args->line) != (size_t)args->map.width + 4
+        || ft_isndigit(args->line, 3))
     {
         while (i > 0)
             free(args->map.board[--i]);
         free(args->line);
+		printf("Check_line : first error\n");
         return (1);
     }
 	while (args->line[j])
 	{
 		if (args->line[j] != 'O' && args->line[j] != 'X'
-			&& args->line[j] != 'o' && args->line[j] != 'x')
+			&& args->line[j] != 'o' && args->line[j] != 'x'
+			&& args->line[j] != '.')
 		{
+			printf("args->line[j] : [%c]\n", args->line[j]);
+			printf("Check_line : second error\n");
+			printf("j : %d\n", j);
 			while (i > 0)
             	free(args->map.board[--i]);
         	free(args->line);
@@ -43,8 +86,8 @@ static int	ft_check_line(t_args *args, int i)
 
 static int	ft_map_assign(t_args *args)
 {
-	int	i;
-	int	ret;
+	int		i;
+	int		ret;
 
 	i = 0;
 	while (i < args->map.height)
@@ -58,7 +101,10 @@ static int	ft_map_assign(t_args *args)
 		    return (1);
 		}
 		if (ft_check_line(args, i))
+		{
+			printf("Check_line error\n");
 			return (1);
+		}
 		args->map.board[i++] = ft_strsub(args->line, 4, (size_t)args->map.width);
 		// i++;
         ft_strdel(&args->line);
@@ -74,7 +120,7 @@ static int	ft_check_plateau(t_args *args)
 	if ((ret = get_next_line(0, &args->line)) != 1)
     {
         if (ret == 0)
-            free(args->line);
+            ft_strdel(&args->line);
         return (1);
 	}
 	if (ft_count_word(args->line, ' ') != 2)
@@ -99,9 +145,15 @@ int		ft_handle_map(t_args *args)
 {
 	if (ft_check_plateau(args))
 		return (1);
+	printf("Check_plateau BON\n");
 	if (!(args->map.board = (char**)malloc(sizeof(char*) * args->map.height)))
 		return (1);
+	printf("MAP_BOARD MALLOCATED\n");
+	if (ft_check_first_line(args))
+		return (1);
+	printf("First_line map is good\n");
 	if (ft_map_assign(args))
 		return (1);
+	printf("MAP_assign BON\n");
 	return (0);
 }
