@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/22 00:56:36 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/24 20:35:58 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	ft_piece_assign(t_args *args)
 		if (ft_check_line(args, i))
 			return (1);
 		args->piece.board[i++] = ft_strsub(args->line,
-			4, (size_t)args->map.width);
+			0, (size_t)args->map.width);
 		//i++;
 		ft_strdel(&args->line);
 	}

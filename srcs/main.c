@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/24 03:40:33 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/24 20:33:28 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void		ft_init(t_args *args)
 ** LINE TEST : 
 **     $$$ exec p2 : [./wahasni.filler]
 **
-**     Plateau 14 30:
+**     Plateau 9 30:
 **         012345678901234567890123456789
 **     000 ..............................
 **     001 ..............................
@@ -33,11 +33,6 @@ void		ft_init(t_args *args)
 **     006 ..............................
 **     007 ..............................
 **     008 ..............................
-**     009 ..............................
-**     010 ..............................
-**     011 ...........................O..
-**     012 ..............................
-**     013 ..............................
 **
 **     Piece 4 7
 **     ...*...
@@ -69,6 +64,20 @@ int 		main(void)
 		if (ft_handle_piece(&args))
 			return (1);
 		printf("PIECE OKEY\n");
+		printf("PRINT QUELQUES VALEURS POUR TEST PARSING :");
+		printf("line : {%s}\n", args.line);
+		int i = 0;
+		while (i < args.map.height)
+		{
+			printf("Y = %d, Board : {%s}\n", i, args.map.board[i]);
+			i++;
+		}
+		i = 0;
+		while (i < args.piece.height)
+		{
+			printf("Y = %d, Board : {%s}\n", i, args.piece.board[i]);
+			i++;
+		}
 		//end = ft_resolve(&args);
 	}
 	return (0);
