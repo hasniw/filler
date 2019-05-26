@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/22 00:44:41 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/26 20:27:08 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,10 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 
-typedef struct	s_point
-{
-	int			i;
-	int			x;
-	int			y;
-	double		min;
-	int			good;
-}				t_point;
-
 typedef struct	s_piece
 {
 	int			width;
 	int			height;
-	t_point		*p;
 	char		**board;
 }				t_piece;
 
@@ -46,9 +36,10 @@ typedef struct	s_args
 	char		ennemy;
 	char		*line;
 	char		**tab;
+	int			x;
+	int			y;
 	t_map		map;
 	t_piece		piece;
-	t_point		point;
 }				t_args;
 
 /*
@@ -75,5 +66,17 @@ int				ft_handle_map(t_args *args);
 */
 
 int				ft_handle_piece(t_args *args);
+
+/*
+** FREE
+*/
+
+void			free_split(char **tab);
+
+/*
+** RESOLVE
+*/
+
+int				ft_resolve(t_args *args);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/24 20:33:28 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/26 20:25:14 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,38 +47,42 @@ int 		main(void)
 	int		end;
 
 	end = 1;
-	printf("1\n");
 	ft_init(&args);
-	// printf("value of init_player : %d\n", ft_init_player(&args, args.line));
 	if (ft_init_player(&args, args.line))
-	{
-		printf("test\n");
 		return (1);
-	}
-	printf("yess\n");
 	while (end)
 	{
 		if (ft_handle_map(&args))
+		{
+			free_split(args.map.board);
+			free_split(args.piece.board);
 			return (1);
+		}
 		printf("MAP OKEY\n");
 		if (ft_handle_piece(&args))
+		{
+			free_split(args.map.board);
+			free_split(args.piece.board);
 			return (1);
+		}
 		printf("PIECE OKEY\n");
-		printf("PRINT QUELQUES VALEURS POUR TEST PARSING :");
-		printf("line : {%s}\n", args.line);
-		int i = 0;
-		while (i < args.map.height)
-		{
-			printf("Y = %d, Board : {%s}\n", i, args.map.board[i]);
-			i++;
-		}
-		i = 0;
-		while (i < args.piece.height)
-		{
-			printf("Y = %d, Board : {%s}\n", i, args.piece.board[i]);
-			i++;
-		}
-		//end = ft_resolve(&args);
+		// printf("PRINT QUELQUES VALEURS POUR TEST PARSING :");
+		// printf("line : {%s}\n", args.line);
+		// int i = 0;
+		// while (i < args.map.height)
+		// {
+			// printf("Y = %d, Board : {%s}\n", i, args.map.board[i]);
+			// i++;
+		// }
+		// i = 0;
+		// while (i < args.piece.height)
+		// {
+			// printf("Y = %d, Board : {%s}\n", i, args.piece.board[i]);
+			// i++;
+		// }
+		end = ft_resolve(&args);
 	}
+	printf("END OF MAIN !!!!\n");
+	printf("map height in main : %d\n", args.map.height);
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/05/22 01:44:43 by wahasni          ###   ########.fr        #
+#    Updated: 2019/05/26 00:34:14 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ $(NAME)			:	$(OBJ)
 					@echo "-------------------------------------------------------------"
 
 $(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
-					$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
+					$(CC) -g $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 # Clean rules
 clean			:

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/24 20:35:58 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/26 01:36:11 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,29 +42,30 @@ static int	ft_piece_assign(t_args *args)
 	{
 		if ((ret = get_next_line(0, &args->line)) != 1)
 		{
+			
 			if (ret == 0)
 				free(args->line);
 			while (i > 0)
 				free(args->map.board[--i]);
 			return (1);
 		}
+		
 		if (ft_check_line(args, i))
 			return (1);
-		args->piece.board[i++] = ft_strsub(args->line,
-			0, (size_t)args->map.width);
-		//i++;
+		// printf("ARGS->LINE {%s}\n", args->line);
+		args->piece.board[i++] = ft_strdup(args->line);
 		ft_strdel(&args->line);
 	}
-	args->piece.board[i] = NULL;
+	// args->piece.board[i] = NULL;
 	return (0);
 }
 
 static int	ft_check_first_line(t_args *args)
 {
 	int		ret;
-
 	if ((ret = get_next_line(0, &args->line)) != 1)
 	{
+		
 		if (ret == 0)
 			free(args->line);
 		return (1);
@@ -80,7 +81,8 @@ static int	ft_check_first_line(t_args *args)
 		return (1);
 	args->piece.height = ft_atoi(args->tab[1]);
 	args->piece.width = ft_atoi(args->tab[2]);
-	// free_tab();
+	free_split(args->tab);
+	// ft_strdel(args->tab);
 	if (args->piece.height < 1 || args->piece.width < 1)
 		return (1);
 	return (0);
@@ -90,6 +92,8 @@ int			ft_handle_piece(t_args *args)
 {
 	if (ft_check_first_line(args))
 		return (1);
+	args->piece.height = 4;
+	printf("value of piece height : %d\n", args->piece.height);
 	if (!(args->piece.board = (char**)malloc
 		(sizeof(char*) * args->piece.height)))
 		return (1);

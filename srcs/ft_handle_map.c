@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/24 20:32:10 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/26 03:54:02 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_check_first_line(t_args *args)
 	if ((ret = get_next_line(0, &args->line)) != 1)
 	{
 	    if (ret == 0)
-	        free(args->line);
+	        ft_strdel(&args->line);
 	    return (1);
 	}
 	while (++i < 4)
@@ -42,6 +42,7 @@ static int	ft_check_first_line(t_args *args)
 			return (1);
 		}
 	}
+	ft_strdel(&args->line);
 	return (0);
 }
 
@@ -55,8 +56,8 @@ static int	ft_check_line(t_args *args, int i)
         || ft_isndigit(args->line, 3))
     {
         while (i > 0)
-            free(args->map.board[--i]);
-        free(args->line);
+            ft_strdel(&args->map.board[--i]);
+        ft_strdel(&args->line);
         return (1);
     }
 	while (args->line[j])
@@ -66,8 +67,8 @@ static int	ft_check_line(t_args *args, int i)
 			&& args->line[j] != '.')
 		{
 			while (i > 0)
-            	free(args->map.board[--i]);
-        	free(args->line);
+            	ft_strdel(&args->map.board[--i]);
+        	ft_strdel(&args->line);
         	return (1);
 		}
 		j++;
@@ -85,19 +86,21 @@ static int	ft_map_assign(t_args *args)
 	{
 		if ((ret = get_next_line(0, &args->line)) != 1)
 		{
+			
 		    if (ret == 0)
-		            free(args->line);
+		        ft_strdel(&args->line);
 		    while (i > 0)
-		            free(args->map.board[--i]);
+		        ft_strdel(&args->map.board[--i]);
 		    return (1);
 		}
 		if (ft_check_line(args, i))
 			return (1);
-		args->map.board[i++] = ft_strsub(args->line, 4, (size_t)args->map.width);
-        printf("map board[%d] -> {%s}\n", i - 1, args->map.board[i - 1]);
+		args->map.board[i++] = ft_strdup(args->line + 4);
+        // printf("map board[%d] -> {%s}\n", i - 1, args->map.board[i - 1]);
 		ft_strdel(&args->line);
 	}
-	args->map.board[i] = NULL;
+    // printf("map board[%d] -> {%s}\n", i, args->map.board[i]);
+	// args->map.board[i] = NULL;
 	return (0);
 }
 
@@ -107,6 +110,7 @@ static int	ft_check_plateau(t_args *args)
 
 	if ((ret = get_next_line(0, &args->line)) != 1)
     {
+		
         if (ret == 0)
             ft_strdel(&args->line);
         return (1);
@@ -122,7 +126,7 @@ static int	ft_check_plateau(t_args *args)
 		return (1);
 	args->map.height = ft_atoi(args->tab[1]);
 	args->map.width = ft_atoi(args->tab[2]);
-	// free_tab();
+	free_split(args->tab);
 	if (args->map.height < 1 || args->map.width < 1)
 		return (1);
 	////
@@ -134,8 +138,10 @@ int		ft_handle_map(t_args *args)
 	if (ft_check_plateau(args))
 		return (1);
 	printf("Check_plateau BON\n");
-	if (!(args->map.board = (char**)malloc(sizeof(char*) * args->map.height)))
+	if (!(args->map.board = (char**)malloc(sizeof(char*) * args->map.height + 1)))
 		return (1);
+	printf("map height : %d\n", args->map.height);
+	args->map.board[args->map.height] = 0;
 	printf("MAP_BOARD MALLOCATED\n");
 	if (ft_check_first_line(args))
 		return (1);

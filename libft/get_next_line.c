@@ -3,106 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: jdescler <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 14:42:30 by wahasni           #+#    #+#             */
-/*   Updated: 2018/12/14 14:51:23 by wahasni          ###   ########.fr       */
+/*   Created: 2018/11/05 17:57:29 by jdescler          #+#    #+#             */
+/*   Updated: 2018/12/05 13:23:56 by jdescler         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
 
-static void			ft_list_add_last(t_gnl **save, t_gnl *elem)
+int				get_line(char **s, char **line, int fd)
 {
-	t_gnl *list;
+	int			i;
+	char		*tmp;
 
-	list = *save;
-	while (list->next != NULL)
-		list = list->next;
-	list->next = elem;
-}
-
-static t_gnl		*ft_create_list(int fd)
-{
-	t_gnl *list;
-
-	if (!(list = (t_gnl*)malloc(sizeof(*list))))
-		return (NULL);
-	list->fd = fd;
-	list->temp = ft_strnew(0);
-	list->text = NULL;
-	list->next = NULL;
-	return (list);
-}
-
-static t_gnl		*ft_check_fd(t_gnl *save, int fd)
-{
-	t_gnl *tmp;
-	t_gnl *d_list;
-
-	tmp = NULL;
-	d_list = save;
-	while (d_list)
+	i = 0;
+	while (s[fd][i] != '\n' && s[fd][i] != '\0')
+		i++;
+	if (s[fd][i] == '\n')
 	{
-		if (d_list->fd == fd)
-			return (d_list);
-		if (!(d_list->next))
-		{
-			tmp = ft_create_list(fd);
-			ft_list_add_last(&d_list, tmp);
-			return (tmp);
-		}
-		d_list = d_list->next;
+		*line = ft_strsub(s[fd], 0, i);
+		tmp = ft_strsub(s[fd], i + 1, ft_strlen(s[fd]) - (i + 1));
+		free(s[fd]);
+		s[fd] = tmp;
+		if (s[fd][0] == '\0')
+			ft_strdel(&s[fd]);
 	}
-	return (NULL);
+	else if (s[fd][i] == '\0')
+	{
+		*line = ft_strdup(s[fd]);
+		ft_strdel(&s[fd]);
+	}
+	return (1);
 }
 
-static int			ft_check(char *save, char **line)
+int				get_next_line(const int fd, char **line)
 {
-	char	*fin;
+	int			ret;
+	char		buffer[BUFF_SIZE + 1];
+	static char	*s[FD_MAX];
+	char		*tmp;
 
-	if (!save)
-		return (0);
-	fin = ft_strchr(save, '\n');
-	if (fin != NULL)
-	{
-		*fin = '\0';
-		*line = ft_strdup(save);
-		ft_strncpy(save, &fin[1], ft_strlen(&fin[1]) + 1);
-		return (1);
-	}
-	else if (ft_strlen(save) > 0)
-	{
-		*line = ft_strdup(save);
-		*save = '\0';
-		return (1);
-	}
-	return (0);
-}
-
-int					get_next_line(const int fd, char **line)
-{
-	char			buf[BUFF_SIZE + 1];
-	static t_gnl	*save = NULL;
-	t_gnl			*tmp;
-	int				ret;
-
-	if (!(save))
-		save = ft_create_list(fd);
-	if (fd == -1 || line == NULL || BUFF_SIZE <= 0)
+	if (fd < 0 || line == NULL || BUFF_SIZE <= 0)
 		return (-1);
-	tmp = ft_check_fd(save, fd);
-	while (!(ft_strchr(tmp->temp, '\n')))
+	while ((ret = read(fd, buffer, BUFF_SIZE)) > 0)
 	{
-		ret = read(fd, buf, BUFF_SIZE);
-		if (ret == -1)
-			return (-1);
-		if (ret == 0)
-			return (ft_check(tmp->text, line));
-		buf[ret] = '\0';
-		tmp->text = ft_strjoin(tmp->temp, buf);
-		free(tmp->temp);
-		tmp->temp = tmp->text;
+		buffer[ret] = '\0';
+		if (!s[fd])
+			s[fd] = ft_strnew(0);
+		tmp = ft_strjoin(s[fd], buffer);
+		free(s[fd]);
+		s[fd] = tmp;
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	return (ft_check(tmp->text, line));
+	if (ret < 0)
+		return (-1);
+	else if (ret == 0 && (s[fd] == NULL || s[fd][0] == '\0'))
+		return (0);
+	return (get_line(s, line, fd));
 }

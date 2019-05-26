@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:59:43 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/24 20:25:32 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/26 01:27:50 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,19 @@ static int  ft_check_line(t_args *args)
     return (0);
 }
 
+void    free_split(char **tab)
+{
+    int i;
+    
+    i = 0;
+    while (tab[i])
+    {
+     free(tab[i]);
+    i++;
+    }
+    free(tab);   
+}
+
 int         ft_init_player(t_args *args, char *line)
 {
 	int     ret;
@@ -60,9 +73,12 @@ int         ft_init_player(t_args *args, char *line)
 	args->tab = ft_strsplit(line, ' ');
 	ft_strdel(&line);
 	if (ft_check_line(args))
+    {
+        ft_strdel(args->tab);
         return (1);
-    //free tab;
+    }
 	if (ft_assign_player(args))
 		return (1);
+    free_split(args->tab);
 	return (0);
 }
