@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/26 20:25:14 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/28 23:24:21 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void		ft_init(t_args *args)
 {
 	args->line = NULL;
 	args->tab = NULL;
+	// ft_bzero(args, sizeof(args))s;
+	// ft_memalloc(sizeof(args));
 }
 
 /*
@@ -30,8 +32,8 @@ void		ft_init(t_args *args)
 **     003 ..............................
 **     004 ..............................
 **     005 ..............................
-**     006 ..............................
-**     007 ..............................
+**     006 ......X.......................
+**     007 .......................O......
 **     008 ..............................
 **
 **     Piece 4 7
@@ -52,10 +54,19 @@ int 		main(void)
 		return (1);
 	while (end)
 	{
+		printf("555\n");
 		if (ft_handle_map(&args))
 		{
-			free_split(args.map.board);
-			free_split(args.piece.board);
+			printf("1\n");
+			// printf("board : {%s}\n", args.map.board[0]);
+			int n = 0;
+			while (n < args.map.height)
+				free(args.map.board[n++]);
+			free(args.map.board);
+			// free_split(args.map.board);
+			printf("2\n");
+			// ft_strdel(args.piece.board);
+			printf("3\n");
 			return (1);
 		}
 		printf("MAP OKEY\n");
@@ -80,7 +91,12 @@ int 		main(void)
 			// printf("Y = %d, Board : {%s}\n", i, args.piece.board[i]);
 			// i++;
 		// }
-		end = ft_resolve(&args);
+		//end = ft_resolve(&args);
+		// free_split(args.piece.board);
+		int n = 0;
+		while (n < args.piece.height)
+			free(args.piece.board[n++]);
+		free(args.piece.board);
 	}
 	printf("END OF MAIN !!!!\n");
 	printf("map height in main : %d\n", args.map.height);

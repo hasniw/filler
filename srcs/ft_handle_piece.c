@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/26 01:36:11 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/28 17:03:40 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ static int	ft_check_first_line(t_args *args)
 	int		ret;
 	if ((ret = get_next_line(0, &args->line)) != 1)
 	{
-		
 		if (ret == 0)
 			free(args->line);
 		return (1);
@@ -93,7 +92,7 @@ int			ft_handle_piece(t_args *args)
 	if (ft_check_first_line(args))
 		return (1);
 	args->piece.height = 4;
-	printf("value of piece height : %d\n", args->piece.height);
+	// printf("value of piece height : %d\n", args->piece.height);
 	if (!(args->piece.board = (char**)malloc
 		(sizeof(char*) * args->piece.height)))
 		return (1);

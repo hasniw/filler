@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/26 03:54:02 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/28 23:23:37 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ static int	ft_check_first_line(t_args *args)
 	{
 	    if (ret == 0)
 	        ft_strdel(&args->line);
+		printf("333\n");
 	    return (1);
 	}
+	printf("444\n");
 	while (++i < 4)
 	{
 		if (args->line[i] != ' ')
@@ -84,13 +86,15 @@ static int	ft_map_assign(t_args *args)
 	i = 0;
 	while (i < args->map.height)
 	{
+		printf("lololo\n");
 		if ((ret = get_next_line(0, &args->line)) != 1)
 		{
-			
+			printf("ppfosfd\n");
 		    if (ret == 0)
 		        ft_strdel(&args->line);
 		    while (i > 0)
 		        ft_strdel(&args->map.board[--i]);
+			printf("3333\n");
 		    return (1);
 		}
 		if (ft_check_line(args, i))
@@ -110,9 +114,9 @@ static int	ft_check_plateau(t_args *args)
 
 	if ((ret = get_next_line(0, &args->line)) != 1)
     {
-		
         if (ret == 0)
             ft_strdel(&args->line);
+		// printf("blablabla\n");
         return (1);
 	}
 	if (ft_count_word(args->line, ' ') != 2)
@@ -140,8 +144,8 @@ int		ft_handle_map(t_args *args)
 	printf("Check_plateau BON\n");
 	if (!(args->map.board = (char**)malloc(sizeof(char*) * args->map.height + 1)))
 		return (1);
-	printf("map height : %d\n", args->map.height);
-	args->map.board[args->map.height] = 0;
+	// printf("map height : %d\n", args->map.height);
+	// args->map.board[args->map.height] = 0;
 	printf("MAP_BOARD MALLOCATED\n");
 	if (ft_check_first_line(args))
 		return (1);
