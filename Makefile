@@ -6,7 +6,7 @@
 #    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/05/28 15:26:59 by wahasni          ###   ########.fr        #
+#    Updated: 2019/05/30 06:35:17 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,13 +31,15 @@ LDFLAGS		= -Llibft
 LDLIBS		= -lft
 
 SRC_NAME 	= ft_count_word.c\
-ft_free.c\
 ft_handle_map.c\
 ft_handle_piece.c\
 ft_init.c\
 ft_init_player.c\
 ft_isndigit.c\
 main.c\
+ft_free.c\
+check.c\
+ft_resolve.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/28 23:24:21 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/30 06:26:00 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		ft_init(t_args *args)
 ** LINE TEST : 
 **     $$$ exec p2 : [./wahasni.filler]
 **
-**     Plateau 9 30:
+**     Plateau 2 30:
 **         012345678901234567890123456789
 **     000 ..............................
 **     001 ..............................
@@ -57,13 +57,12 @@ int 		main(void)
 		printf("555\n");
 		if (ft_handle_map(&args))
 		{
-			printf("1\n");
-			// printf("board : {%s}\n", args.map.board[0]);
-			int n = 0;
-			while (n < args.map.height)
-				free(args.map.board[n++]);
-			free(args.map.board);
-			// free_split(args.map.board);
+			if (args.map.board[0])
+			{
+				printf("nanmamaamammaa\n");
+				free_board(args.map.board, args.map.height);
+				printf("yoyoyoyoyoyo\n");
+			}
 			printf("2\n");
 			// ft_strdel(args.piece.board);
 			printf("3\n");
@@ -72,31 +71,15 @@ int 		main(void)
 		printf("MAP OKEY\n");
 		if (ft_handle_piece(&args))
 		{
-			free_split(args.map.board);
-			free_split(args.piece.board);
+			if (args.map.board)
+				free_board(args.map.board, args.map.height);
+			free_board(args.piece.board, args.piece.height);
 			return (1);
 		}
 		printf("PIECE OKEY\n");
-		// printf("PRINT QUELQUES VALEURS POUR TEST PARSING :");
-		// printf("line : {%s}\n", args.line);
-		// int i = 0;
-		// while (i < args.map.height)
-		// {
-			// printf("Y = %d, Board : {%s}\n", i, args.map.board[i]);
-			// i++;
-		// }
-		// i = 0;
-		// while (i < args.piece.height)
-		// {
-			// printf("Y = %d, Board : {%s}\n", i, args.piece.board[i]);
-			// i++;
-		// }
-		//end = ft_resolve(&args);
-		// free_split(args.piece.board);
-		int n = 0;
-		while (n < args.piece.height)
-			free(args.piece.board[n++]);
-		free(args.piece.board);
+		free_board(args.piece.board, args.piece.height);
+		end = ft_resolve(&args);
+		
 	}
 	printf("END OF MAIN !!!!\n");
 	printf("map height in main : %d\n", args.map.height);

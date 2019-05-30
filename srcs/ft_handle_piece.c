@@ -6,11 +6,37 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/28 17:03:40 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/30 02:30:34 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/filler.h"
+
+static void	ft_get_point_pos(t_args *args)
+{
+        int i;
+        int j;
+        int cnt;
+
+        i = 0;
+        cnt = 0;
+        while (i < args->piece.height)
+        {
+                j = 0;
+                while (args->piece.board[i][j])
+                {
+                        if (args->piece.board[i][j] == '*')
+                        {
+                                args->piece.p[cnt].x = j;
+                                args->piece.p[cnt].y = i;
+                                args->piece.p[cnt].min = args->point.min;
+                                cnt++;
+                        }
+                        j++;
+                }
+                i++;
+        }
+}
 
 static int	ft_check_line(t_args *args, int i)
 {
@@ -98,5 +124,9 @@ int			ft_handle_piece(t_args *args)
 		return (1);
 	if (ft_piece_assign(args))
 		return (1);
+	if (!(args->piece.p = (t_point*)malloc(sizeof(t_point) *
+                args->piece.cnt)))
+                return (1);
+    ft_get_point_pos(args);
 	return (0);
 }
