@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/30 02:30:34 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/31 04:52:54 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static int	ft_check_line(t_args *args, int i)
 			free(args->line);
 			return (1);
 		}
+		if (args->line[j] == '*')
+			args->piece.cnt++;
 		j++;
 	}
 	return (0);
@@ -81,6 +83,7 @@ static int	ft_piece_assign(t_args *args)
 		// printf("ARGS->LINE {%s}\n", args->line);
 		args->piece.board[i++] = ft_strdup(args->line);
 		ft_strdel(&args->line);
+		args->point.min = args->map.width * args->map.height;
 	}
 	// args->piece.board[i] = NULL;
 	return (0);
@@ -115,6 +118,7 @@ static int	ft_check_first_line(t_args *args)
 
 int			ft_handle_piece(t_args *args)
 {
+	args->piece.cnt = 0;
 	if (ft_check_first_line(args))
 		return (1);
 	args->piece.height = 4;

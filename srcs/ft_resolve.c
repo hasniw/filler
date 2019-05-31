@@ -6,39 +6,146 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 23:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/26 23:33:11 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/31 04:22:28 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../include/filler.h"
 
-int	pose_piece(t_args *args)
+double  calc_min(t_args *args, t_point *t, t_point *p, t_point *ennemy)
 {
-	if (ft_check_pos(args))
+	int	i;
+	double	min;
+	double	res;	
+	
+	i = 0;
+	min = args->point.min;
+	while (i < args->piece.cnt)
 	{
-		if (ft_check_collision(args))
-		{
-			ft_get_min_dist(args);	
-			return (1);
-		}
+	        if (i == p->i)
+	                i++;
+	        else
+	        {
+	                res = pow((ennemy->x - (args->piece.p[i].x - p->x + t->x)), 2);
+	                res += pow((ennemy->y - (args->piece.p[i].y - p->y + t->y)), 2);
+	                res = sqrt(res);
+	                min = res < min ? res : min;
+	                i++;
+	        }
 	}
-	return (0);
+	return (min);
 }
 
-int	ft_resolve(t_args *args)
+double  calc_min_dist(t_args *args, t_point *tracker, t_point *ennemy)
 {
-	int end;
+	t_point	p;
+	double	min;
+	double	res;
 
-	while (args->y < args->map.height)
+	p.i = 0;
+	min = args->point.min;
+    printf("point.min : %f\n", min);
+	ft_bzero(&p, sizeof(p));
+	while (p.i < args->piece.cnt)
 	{
-		args->x = 0;
-		while(args->x < args->map.width)
-		{
-			if (args->map.board[args->y][args->x] == args->me)
-				end = pose_piece(args);
-			args->x++;
-		}
-		args->y++;
+	    p.x = args->piece.p[p.i].x;
+	    p.y = args->piece.p[p.i].y;
+	    if (is_good(args, &p, tracker))
+	    {
+	        res = calc_min(args, tracker, &p, ennemy);
+            printf("res : %f\n", res);
+	        if (res < args->piece.p[p.i].min)
+	                args->piece.p[p.i].min = res;
+	        min = res < min ? res : min;
+	    }
+	    p.i++;
 	}
-	return (filler_end(args, end));
+	return (min);
+}
+
+int		ft_get_min_dist(t_args *args, t_point *tracker)
+{
+    double  min;
+	t_point	ennemy;
+
+	min = args->map.width * args->map.height;;
+	printf("MIN INITIALIZE : %f\n", min);
+	ennemy.y = 0;
+	while (ennemy.y < args->map.height)
+	{
+	        ennemy.x = 0;
+	        while (ennemy.x < args->map.width)
+	        {
+	                if (args->map.board[ennemy.y][ennemy.x] == args->ennemy)
+	                {
+	                        min = calc_min_dist(args, tracker, &ennemy);
+				printf("min : %f\n", min);
+	                        if (min < args->point.min)
+	                        {
+	                                args->point.x = tracker->x;
+	                                args->point.y = tracker->y;
+	                                args->point.min = min;
+	                        }
+	                }
+	                ennemy.x++;
+	        }
+	        ennemy.y++;
+	}
+	return (1);
+}
+
+int             its_me(t_args *args, t_point *tracker)
+{
+    printf("check_edge : %d\n", check_edge(args, tracker));
+    printf("check_p_pos : %d\n", check_p_pos(args, tracker));
+    if (check_edge(args, tracker))
+    {
+            if (check_p_pos(args, tracker))
+            {
+                    ft_get_min_dist(args, tracker);
+                    return (1);
+            }
+    }
+    return (0);
+}
+
+int		filler_end(t_args *args, int end)
+{
+	if (end == 1)
+	{
+		print_pos(args);
+		// free(&args->piece);
+		args->point.x = 0;
+		args->point.y = 0;
+		args->point.min = args->map.width * args->map.height;
+	}
+	else
+	{
+		// free(args);
+		printf("0 0\n");
+	}
+	return (end);
+}
+
+int		ft_resolve(t_args *args)
+{
+        t_point tracker;
+        int	end;
+
+        end = 0;
+        tracker.y = 0;
+        while (tracker.y < args->map.height)
+        {
+                tracker.x = 0;
+                while (tracker.x < args->map.width)
+                {
+                        if (args->map.board[tracker.y][tracker.x] == args->me)
+                                end = its_me(args, &tracker) ? 1 : end;
+                        tracker.x++;
+                }
+                tracker.y++;
+        }
+	printf("end = %d\n", end);
+	printf("ft_resolve work\n");
+        return (filler_end(args, end));
 }

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/30 06:35:59 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/30 22:58:02 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,5 +102,8 @@ int				is_good(t_args *args, t_point *p, t_point *t);
 int				check_overflow(t_args *args, int x, int y);
 int				check_edge(t_args *args, t_point *p);
 int				check_good(t_args *args);
+
+int				print_pos(t_args *args);
+int				ft_get_min_dist(t_args *args, t_point *tracker);
 
 #endif

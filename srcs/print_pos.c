@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/19 14:16:22 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/30 04:14:34 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/31 01:10:45 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "filler.h"
+#include "../include/filler.h"
 
 int	print_pos(t_args *args)
 {
@@ -32,6 +32,6 @@ int	print_pos(t_args *args)
 	}
 	x = args->point.x - args->piece.p[cnt].x;
 	y = args->point.y - args->piece.p[cnt].y;
-	ft_printf("%d %d\n", y, x);
+	printf("%d %d\n", y, x);
 	return (1);
 }

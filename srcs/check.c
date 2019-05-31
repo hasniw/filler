@@ -6,120 +6,92 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 01:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/30 06:37:07 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/31 04:01:21 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/filler.h"
 
-double  calc_min(t_args *args, t_point *t, t_point *p, t_point *ad)
+int	check_good(t_args *args)
 {
-	int	i;
-	double	min;
-	double	res;	
-	
+	int i;
+
 	i = 0;
-	min = args->point.min;
 	while (i < args->piece.cnt)
 	{
-	        if (i == p->i)
-	                i++;
-	        else
-	        {
-	                res = pow((ad->x - (args->piece.p[i].x - p->x + t->x)), 2);
-	                res += pow((ad->y - (args->piece.p[i].y - p->y + t->y)), 2);
-	                res = sqrt(res);
-	                min = res < min ? res : min;
-	                i++;
-	        }
+		if (args->piece.p[i].good)
+			return (1);
+		i++;
 	}
-	return (min);
+	return (0);
 }
 
-double  calc_min_dist(t_args *args, t_point *tracker, t_point *ad)
+int	check_edge(t_args *args, t_point *p)
 {
-	t_point	p;
-	double	min;
-	double	res;
-
-	p.i = 0;
-	min = args->point.min;
-	ft_bzero(&p, sizeof(p));
-	while (p.i < args->piece.cnt)
-	{
-	    p.x = args->piece.p[p.i].x;
-	    p.y = args->piece.p[p.i].y;
-	    if (is_good(args, &p, tracker))
-	    {
-	        res = calc_min(args, tracker, &p, ad);
-	        if (res < args->piece.p[p.i].min)
-	                args->piece.p[p.i].min = res;
-	        min = res < min ? res : min;
-	    }
-	    p.i++;
-	}
-	return (min);
+	if ((p->y - 1 > 0) && args->map.board[p->y - 1][p->x] == '.')
+		return (1);
+	if ((p->y + 1 < args->map.height)
+		&& args->map.board[p->y + 1][p->x] == '.')
+		return (1);
+	if ((p->x + 1 < args->map.width)
+		&& args->map.board[p->y][p->x + 1] == '.')
+		return (1);
+	if ((p->x - 1 > 0) && args->map.board[p->y][p->x - 1] == '.')
+		return (1);
+	return (0);
 }
 
-int		get_min_dist(t_args *args, t_point *tracker)
+int	check_overflow(t_args *args, int x, int y)
 {
-    double  min;
-	t_point	ad;
+	if (y < 0)
+		return (0);
+	if (x < 0)
+		return (0);
+	if (y >= args->map.height)
+		return (0);
+	if (x >= args->map.width)
+		return (0);
+	return (1);
+}
 
-	min = args->map.width * args->map.height;;
-	ad.y = 0;
-	while (ad.y < args->map.height)
+int	is_good(t_args *args, t_point *p, t_point *t)
+{
+	int i;
+	int x1;
+	int y1;
+
+	i = 0;
+	while (i < args->piece.cnt)
 	{
-	        ad.x = 0;
-	        while (ad.x < args->map.width)
-	        {
-	                if (args->map.board[ad.y][ad.x] == args->ad)
-	                {
-	                        min = calc_min_dist(args, tracker, &ad);
-	                        if (min < args->point.min)
-	                        {
-	                                args->point.x = tracker->x;
-	                                args->point.y = tracker->y;
-	                                args->point.min = min;
-	                        }
-	                }
-	                ad.x++;
-	        }
-	        ad.y++;
+		y1 = (args->piece.p[i].y - p->y + t->y);
+		x1 = (args->piece.p[i].x - p->x + t->x);
+		if (i == p->i)
+			i++;
+		else
+		{
+			if (!check_overflow(args, x1, y1))
+				return (0);
+			if (args->map.board[y1][x1] != '.')
+				return (0);
+			i++;
+		}
 	}
 	return (1);
 }
 
-int             its_me(t_args *args, t_point *tracker)
+int	check_p_pos(t_args *args, t_point *tracker)
 {
-    if (check_edge(args, tracker))
-    {
-            if (check_p_pos(args, tracker))
-            {
-                    get_min_dist(args, tracker);
-                    return (1);
-            }
-    }
-    return (0);
-}
+	t_point p;
 
-int	ft_resolve(t_args *args)
-{
-    t_point	tracker;
-	int		end;
-
-	end = 0;
-	tracker.y = 0;
-	while (tracker.y < args->map.height)
+	p.i = 0;
+	printf("args->piece.cnt : %d\n", args->piece.cnt);
+	while (p.i < args->piece.cnt)
 	{
-	        tracker.x = 0;
-	        while (tracker.x < args->map.width)
-	        {
-	                if (args->map.board[tracker.y][tracker.x] == args->me)
-	                        end = its_me(args, &tracker) ? 1 : end;
-	                tracker.x++;
-	        }
-	        tracker.y++;
+		p.x = args->piece.p[p.i].x;
+		p.y = args->piece.p[p.i].y;
+		args->piece.p[p.i].good = is_good(args, &p, tracker);
+		printf("piece.p[%d].good = %d\n", p.i, args->piece.p[p.i].good);
+		p.i++;
 	}
-	return (args_end(args, end));
+	return (check_good(args));
 }

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/30 06:26:00 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/05/31 04:44:36 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int 		main(void)
 		return (1);
 	while (end)
 	{
-		printf("555\n");
 		if (ft_handle_map(&args))
 		{
 			if (args.map.board[0])
@@ -77,9 +76,9 @@ int 		main(void)
 			return (1);
 		}
 		printf("PIECE OKEY\n");
-		free_board(args.piece.board, args.piece.height);
 		end = ft_resolve(&args);
-		
+		printf("end : %d\n", end);
+		free_board(args.piece.board, args.piece.height);		
 	}
 	printf("END OF MAIN !!!!\n");
 	printf("map height in main : %d\n", args.map.height);
