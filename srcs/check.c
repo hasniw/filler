@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 01:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/31 04:01:21 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/01 02:14:08 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,13 +84,13 @@ int	check_p_pos(t_args *args, t_point *tracker)
 	t_point p;
 
 	p.i = 0;
-	printf("args->piece.cnt : %d\n", args->piece.cnt);
+	// printf("args->piece.cnt : %d\n", args->piece.cnt);
 	while (p.i < args->piece.cnt)
 	{
 		p.x = args->piece.p[p.i].x;
 		p.y = args->piece.p[p.i].y;
 		args->piece.p[p.i].good = is_good(args, &p, tracker);
-		printf("piece.p[%d].good = %d\n", p.i, args->piece.p[p.i].good);
+		// printf("piece.p[%d].good = %d\n", p.i, args->piece.p[p.i].good);
 		p.i++;
 	}
 	return (check_good(args));

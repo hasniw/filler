@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/30 01:02:10 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/01 02:14:08 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@ static int	ft_check_first_line(t_args *args)
 	{
 	    if (ret == 0)
 	        ft_strdel(&args->line);
-		printf("333\n");
+		// printf("333\n");
 	    return (1);
 	}
-	printf("444\n");
+	// printf("444\n");
 	while (++i < 4)
 	{
 		if (args->line[i] != ' ')
 		{
 			ft_strdel(&args->line);
-			printf("first_line space error\n");
+			// printf("first_line space error\n");
 			return (1);
 		}
 	}
@@ -40,7 +40,7 @@ static int	ft_check_first_line(t_args *args)
 		if (!(ft_isdigit(args->line[i++])))
 		{
 			ft_strdel(&args->line);
-			printf("first_line digit error\n");
+			// printf("first_line digit error\n");
 			return (1);
 		}
 	}
@@ -86,24 +86,24 @@ static int	ft_map_assign(t_args *args)
 	i = 0;
 	while (i < args->map.height)
 	{
-		printf("lololo\n");
+		// printf("lololo\n");
 		if ((ret = get_next_line(0, &args->line)) != 1)
 		{
-			printf("ppfosfd\n");
+			// printf("ppfosfd\n");
 		    if (ret == 0)
 		        ft_strdel(&args->line);
 		    while (i > 0)
 		        ft_strdel(&args->map.board[--i]);
-			printf("3333\n");
+			// printf("3333\n");
 		    return (1);
 		}
 		if (ft_check_line(args, i))
 			return (1);
 		args->map.board[i++] = ft_strdup(args->line + 4);
-        // printf("map board[%d] -> {%s}\n", i - 1, args->map.board[i - 1]);
+        // // printf("map board[%d] -> {%s}\n", i - 1, args->map.board[i - 1]);
 		ft_strdel(&args->line);
 	}
-    // printf("map board[%d] -> {%s}\n", i, args->map.board[i]);
+    // // printf("map board[%d] -> {%s}\n", i, args->map.board[i]);
 	// args->map.board[i] = NULL;
 	return (0);
 }
@@ -116,7 +116,7 @@ static int	ft_check_plateau(t_args *args)
     {
         if (ret == 0)
             ft_strdel(&args->line);
-		// printf("blablabla\n");
+		// // printf("blablabla\n");
         return (1);
 	}
 	if (ft_count_word(args->line, ' ') != 2)
@@ -141,17 +141,17 @@ int		ft_handle_map(t_args *args)
 {
 	if (ft_check_plateau(args))
 		return (1);
-	printf("Check_plateau BON\n");
+	// printf("Check_plateau BON\n");
 	if (!(args->map.board = (char**)malloc(sizeof(char*) * args->map.height + 1)))
 		return (1);
-	// printf("map height : %d\n", args->map.height);
+	// // printf("map height : %d\n", args->map.height);
 	// args->map.board[args->map.height] = 0;
-	printf("MAP_BOARD MALLOCATED\n");
+	// printf("MAP_BOARD MALLOCATED\n");
 	if (ft_check_first_line(args))
 		return (1);
-	printf("First_line map is good\n");
+	// printf("First_line map is good\n");
 	if (ft_map_assign(args))
 		return (1);
-	printf("MAP_assign BON\n");
+	// printf("MAP_assign BON\n");
 	return (0);
 }

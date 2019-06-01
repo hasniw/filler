@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 23:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/31 04:22:28 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/01 02:14:08 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ double  calc_min_dist(t_args *args, t_point *tracker, t_point *ennemy)
 
 	p.i = 0;
 	min = args->point.min;
-    printf("point.min : %f\n", min);
+    // printf("point.min : %f\n", min);
 	ft_bzero(&p, sizeof(p));
 	while (p.i < args->piece.cnt)
 	{
@@ -53,7 +53,7 @@ double  calc_min_dist(t_args *args, t_point *tracker, t_point *ennemy)
 	    if (is_good(args, &p, tracker))
 	    {
 	        res = calc_min(args, tracker, &p, ennemy);
-            printf("res : %f\n", res);
+            // printf("res : %f\n", res);
 	        if (res < args->piece.p[p.i].min)
 	                args->piece.p[p.i].min = res;
 	        min = res < min ? res : min;
@@ -69,7 +69,7 @@ int		ft_get_min_dist(t_args *args, t_point *tracker)
 	t_point	ennemy;
 
 	min = args->map.width * args->map.height;;
-	printf("MIN INITIALIZE : %f\n", min);
+	// printf("MIN INITIALIZE : %f\n", min);
 	ennemy.y = 0;
 	while (ennemy.y < args->map.height)
 	{
@@ -79,7 +79,7 @@ int		ft_get_min_dist(t_args *args, t_point *tracker)
 	                if (args->map.board[ennemy.y][ennemy.x] == args->ennemy)
 	                {
 	                        min = calc_min_dist(args, tracker, &ennemy);
-				printf("min : %f\n", min);
+				// printf("min : %f\n", min);
 	                        if (min < args->point.min)
 	                        {
 	                                args->point.x = tracker->x;
@@ -96,8 +96,8 @@ int		ft_get_min_dist(t_args *args, t_point *tracker)
 
 int             its_me(t_args *args, t_point *tracker)
 {
-    printf("check_edge : %d\n", check_edge(args, tracker));
-    printf("check_p_pos : %d\n", check_p_pos(args, tracker));
+    // printf("check_edge : %d\n", check_edge(args, tracker));
+    // printf("check_p_pos : %d\n", check_p_pos(args, tracker));
     if (check_edge(args, tracker))
     {
             if (check_p_pos(args, tracker))
@@ -122,7 +122,7 @@ int		filler_end(t_args *args, int end)
 	else
 	{
 		// free(args);
-		printf("0 0\n");
+		// printf("0 0\n");
 	}
 	return (end);
 }
@@ -145,7 +145,7 @@ int		ft_resolve(t_args *args)
                 }
                 tracker.y++;
         }
-	printf("end = %d\n", end);
-	printf("ft_resolve work\n");
+	// printf("end = %d\n", end);
+	// printf("ft_resolve work\n");
         return (filler_end(args, end));
 }

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/31 04:44:36 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/01 02:14:08 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,16 +58,16 @@ int 		main(void)
 		{
 			if (args.map.board[0])
 			{
-				printf("nanmamaamammaa\n");
+				// printf("nanmamaamammaa\n");
 				free_board(args.map.board, args.map.height);
-				printf("yoyoyoyoyoyo\n");
+				// printf("yoyoyoyoyoyo\n");
 			}
-			printf("2\n");
+			// printf("2\n");
 			// ft_strdel(args.piece.board);
-			printf("3\n");
+			// printf("3\n");
 			return (1);
 		}
-		printf("MAP OKEY\n");
+		// printf("MAP OKEY\n");
 		if (ft_handle_piece(&args))
 		{
 			if (args.map.board)
@@ -75,12 +75,16 @@ int 		main(void)
 			free_board(args.piece.board, args.piece.height);
 			return (1);
 		}
-		printf("PIECE OKEY\n");
+		// printf("PIECE OKEY\n");
 		end = ft_resolve(&args);
-		printf("end : %d\n", end);
+		// printf("end : %d\n", end);
 		free_board(args.piece.board, args.piece.height);		
 	}
-	printf("END OF MAIN !!!!\n");
-	printf("map height in main : %d\n", args.map.height);
+	// printf("END OF MAIN !!!!\n");
+	// printf("map height in main : %d\n", args.map.height);
+	
+	// __attribute__((destructor)) int end (){
+	// while(1);
+	// };
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:59:43 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/29 18:34:08 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/01 02:14:08 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ int         ft_init_player(t_args *args, char *line)
     {
         if (ret == 0)
             free(line);
-        printf("111\n");
+        // printf("111\n");
         return (1);
 	}
-    printf("222\n");
+    // printf("222\n");
     if (ft_count_word(line, ' ') != 4)
     {
         ft_strdel(&line);
