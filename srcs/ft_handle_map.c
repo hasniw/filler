@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/01 02:14:08 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/01 23:40:30 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,17 +141,11 @@ int		ft_handle_map(t_args *args)
 {
 	if (ft_check_plateau(args))
 		return (1);
-	// printf("Check_plateau BON\n");
 	if (!(args->map.board = (char**)malloc(sizeof(char*) * args->map.height + 1)))
 		return (1);
-	// // printf("map height : %d\n", args->map.height);
-	// args->map.board[args->map.height] = 0;
-	// printf("MAP_BOARD MALLOCATED\n");
 	if (ft_check_first_line(args))
 		return (1);
-	// printf("First_line map is good\n");
 	if (ft_map_assign(args))
 		return (1);
-	// printf("MAP_assign BON\n");
 	return (0);
 }

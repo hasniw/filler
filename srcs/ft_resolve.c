@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 23:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/01 02:14:08 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/01 23:11:35 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,24 +107,6 @@ int             its_me(t_args *args, t_point *tracker)
             }
     }
     return (0);
-}
-
-int		filler_end(t_args *args, int end)
-{
-	if (end == 1)
-	{
-		print_pos(args);
-		// free(&args->piece);
-		args->point.x = 0;
-		args->point.y = 0;
-		args->point.min = args->map.width * args->map.height;
-	}
-	else
-	{
-		// free(args);
-		// printf("0 0\n");
-	}
-	return (end);
 }
 
 int		ft_resolve(t_args *args)

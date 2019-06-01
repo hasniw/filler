@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/30 22:58:02 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/01 23:12:23 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ int				check_good(t_args *args);
 
 int				print_pos(t_args *args);
 int				ft_get_min_dist(t_args *args, t_point *tracker);
+int				filler_end(t_args *args, int end);
 
 #endif

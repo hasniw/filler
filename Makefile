@@ -6,7 +6,7 @@
 #    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/06/01 02:06:22 by wahasni          ###   ########.fr        #
+#    Updated: 2019/06/01 23:11:51 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ main.c\
 ft_free.c\
 check.c\
 ft_resolve.c\
-print_pos.c\
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
