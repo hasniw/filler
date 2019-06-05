@@ -6,15 +6,21 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 01:31:39 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/22 00:56:58 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/02 21:41:04 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/filler.h"
 
-int	ft_init_map(t_args *args)
+void	ft_init(t_args *args)
 {
-	int i;
+	args->line = NULL;
+	args->tab = NULL;
+}
+
+int		ft_init_map(t_args *args)
+{
+	int	i;
 
 	if (!(args->map.board = (char**)malloc(sizeof(char*)
 		* args->map.height)))

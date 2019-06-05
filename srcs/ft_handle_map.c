@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/01 23:40:30 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/02 21:13:44 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,10 @@ static int	ft_check_line(t_args *args, int i)
         	ft_strdel(&args->line);
         	return (1);
 		}
+		if (args->line[j] == 'o')
+			args->line[j] = 'O';
+		if (args->line[j] == 'x')
+			args->line[j] = 'X';
 		j++;
 	}
 	return (0);

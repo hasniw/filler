@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/01 02:14:10 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 01:32:17 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,28 @@
 
 static void	ft_get_point_pos(t_args *args)
 {
-        int i;
-        int j;
-        int cnt;
+    int i;
+    int j;
+    int cnt;
 
-        i = 0;
-        cnt = 0;
-        while (i < args->piece.height)
-        {
-                j = 0;
-                while (args->piece.board[i][j])
-                {
-                        if (args->piece.board[i][j] == '*')
-                        {
-                                args->piece.p[cnt].x = j;
-                                args->piece.p[cnt].y = i;
-                                args->piece.p[cnt].min = args->point.min;
-                                cnt++;
-                        }
-                        j++;
-                }
-                i++;
-        }
+    i = 0;
+    cnt = 0;
+    while (i < args->piece.height)
+    {
+    	j = 0;
+    	while (args->piece.board[i][j])
+    	{
+    		if (args->piece.board[i][j] == '*')
+    		{
+    		    args->piece.p[cnt].x = j;
+    		    args->piece.p[cnt].y = i;
+    		    args->piece.p[cnt].min = args->point.min;
+    		    cnt++;
+    		}
+    		j++;
+    	}
+    	i++;
+    }
 }
 
 static int	ft_check_line(t_args *args, int i)
@@ -70,7 +70,7 @@ static int	ft_piece_assign(t_args *args)
 	while (i < args->piece.height)
 	{
 		// printf("babab\n");
-		if ((ret = get_next_line(0, &args->line)) != 1)
+		if ((ret = get_next_line(0, &args->line)) <= 0)
 		{
 			if (ret == 0)
 				free(args->line);
@@ -78,7 +78,6 @@ static int	ft_piece_assign(t_args *args)
 				free(args->map.board[--i]);
 			return (1);
 		}
-		
 		if (ft_check_line(args, i))
 			return (1);
 		// printf("check line is good\n");

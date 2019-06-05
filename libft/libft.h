@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:09:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/26 01:12:58 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/04/14 15:51:44 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 # include <unistd.h>
 # include <string.h>
 # include <stdlib.h>
-# define BUFF_SIZE 32
-# define FD_MAX 15
 
 typedef struct		s_list
 {

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/01 23:12:23 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 01:39:20 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../libft/libft.h"
 # include <stdio.h>
 # include <math.h>
+# include <fcntl.h>
 
 typedef struct  s_point
 {
@@ -106,5 +107,6 @@ int				check_good(t_args *args);
 int				print_pos(t_args *args);
 int				ft_get_min_dist(t_args *args, t_point *tracker);
 int				filler_end(t_args *args, int end);
+void			ft_init(t_args *args);
 
 #endif

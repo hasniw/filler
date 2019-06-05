@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/02 00:37:52 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 01:31:43 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		filler_end(t_args *args, int end)
 	else
 	{
 		// free(args);
-		printf("0 0\n");
+		ft_putstr("0 0\n");
 	}
 	return (end);
 }
@@ -48,18 +48,17 @@ int	print_pos(t_args *args)
 		}
 		i++;
 	}
+	// printf("args->point.x = %d\n", args->point.x);
+	// printf("args->point.y = %d\n", args->point.y);
+	// printf("piece.p[cnt].x = %d\n", args->piece.p[cnt].x);
+	// printf("piece.p[cnt].y = %d\n", args->piece.p[cnt].y);
 	x = args->point.x - args->piece.p[cnt].x;
 	y = args->point.y - args->piece.p[cnt].y;
-	printf("%d %d\n", y, x);
+	ft_putstr(ft_itoa(y));
+	ft_putchar(' ');
+	ft_putstr(ft_itoa(x));
+	ft_putchar('\n');
 	return (1);
-}
-
-void		ft_init(t_args *args)
-{
-	args->line = NULL;
-	args->tab = NULL;
-	// ft_bzero(args, sizeof(args))s;
-	// ft_memalloc(sizeof(args));
 }
 
 /*
