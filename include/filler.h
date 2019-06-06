@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/06 03:40:47 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/07 00:56:13 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int				ft_handle_piece(t_args *args);
 void			free_split(char **tab);
 void			free_board(char **str, int n);
 int				free_line(char **line, int i);
+void			free_all(t_args args);
 
 /*
 ** RESOLVE

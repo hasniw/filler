@@ -6,11 +6,18 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 01:34:30 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/06 07:48:48 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/07 00:54:41 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/filler.h"
+
+void	free_all(t_args args)
+{
+	free_board(args.map.board, args.map.height);
+	free_board(args.piece.board, args.piece.height);
+	free(args.piece.p);
+}
 
 int		free_line(char **line, int i)
 {
