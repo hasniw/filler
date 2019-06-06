@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/06 01:39:20 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 03:40:47 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,21 +64,11 @@ int				ft_count_word(char *str, char c);
 int				ft_isndigit(char *s, int n);
 
 /*
-** INIT PLAYER
+** PARSING
 */
 
 int				ft_init_player(t_args *args, char *line);
-
-/*
-** MAP
-*/
-
 int				ft_handle_map(t_args *args);
-
-/*
-** PIECE
-*/
-
 int				ft_handle_piece(t_args *args);
 
 /*
@@ -87,12 +77,14 @@ int				ft_handle_piece(t_args *args);
 
 void			free_split(char **tab);
 void			free_board(char **str, int n);
+int				free_line(char **line, int i);
 
 /*
 ** RESOLVE
 */
 
 int				ft_resolve(t_args *args);
+int				ft_get_min_dist(t_args *args, t_point *tracker);
 
 /*
 ** CHECK
@@ -104,9 +96,11 @@ int				check_overflow(t_args *args, int x, int y);
 int				check_edge(t_args *args, t_point *p);
 int				check_good(t_args *args);
 
+/*
+** END
+*/
+
 int				print_pos(t_args *args);
-int				ft_get_min_dist(t_args *args, t_point *tracker);
 int				filler_end(t_args *args, int end);
-void			ft_init(t_args *args);
 
 #endif

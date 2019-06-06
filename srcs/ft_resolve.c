@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 23:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/02 21:47:17 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 02:10:08 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,14 @@ double		calc_min(t_args *args, t_point *t, t_point *p, t_point *ennemy)
 	min = args->point.min;
 	while (i < args->piece.cnt)
 	{
-		if (i == p->i)
-			i++;
-		else
+		if (i != p->i)
 		{
 			res = pow((ennemy->x - (args->piece.p[i].x - p->x + t->x)), 2);
 			res += pow((ennemy->y - (args->piece.p[i].y - p->y + t->y)), 2);
 			res = sqrt(res);
 			min = res < min ? res : min;
-			i++;
 		}
+		i++;
 	}
 	return (min);
 }
@@ -61,29 +59,29 @@ double		calc_min_dist(t_args *args, t_point *tracker, t_point *ennemy)
 	return (min);
 }
 
-int		ft_get_min_dist(t_args *args, t_point *tracker)
+int			ft_get_min_dist(t_args *args, t_point *tracker)
 {
-    double  min;
+	double	min;
 	t_point	ennemy;
 
-	min = args->map.width * args->map.height;;
+	min = args->map.width * args->map.height;
 	ennemy.y = 0;
 	while (ennemy.y < args->map.height)
 	{
 		ennemy.x = 0;
 		while (ennemy.x < args->map.width)
 		{
-		    if (args->map.board[ennemy.y][ennemy.x] == args->ennemy)
-		    {
-		        min = calc_min_dist(args, tracker, &ennemy);
-		        if (min < args->point.min)
-		        {
-		            args->point.x = tracker->x;
-		            args->point.y = tracker->y;
-		            args->point.min = min;
-		        }
-		    }
-		    ennemy.x++;
+			if (args->map.board[ennemy.y][ennemy.x] == args->ennemy)
+			{
+				min = calc_min_dist(args, tracker, &ennemy);
+				if (min < args->point.min)
+				{
+					args->point.x = tracker->x;
+					args->point.y = tracker->y;
+					args->point.min = min;
+				}
+			}
+			ennemy.x++;
 		}
 		ennemy.y++;
 	}
@@ -92,21 +90,21 @@ int		ft_get_min_dist(t_args *args, t_point *tracker)
 
 int			its_me(t_args *args, t_point *tracker)
 {
-    if (check_edge(args, tracker))
-    {
+	if (check_edge(args, tracker))
+	{
 		if (check_p_pos(args, tracker))
 		{
 			ft_get_min_dist(args, tracker);
 			return (1);
 		}
-    }
-    return (0);
+	}
+	return (0);
 }
 
 int			ft_resolve(t_args *args)
 {
-    t_point	tracker;
-    int		end;
+	t_point	tracker;
+	int		end;
 
 	end = 0;
 	tracker.y = 0;
@@ -115,9 +113,9 @@ int			ft_resolve(t_args *args)
 		tracker.x = 0;
 		while (tracker.x < args->map.width)
 		{
-		    if (args->map.board[tracker.y][tracker.x] == args->me)
-		        end = its_me(args, &tracker) ? 1 : end;
-		    tracker.x++;
+			if (args->map.board[tracker.y][tracker.x] == args->me)
+				end = its_me(args, &tracker) ? 1 : end;
+			tracker.x++;
 		}
 		tracker.y++;
 	}

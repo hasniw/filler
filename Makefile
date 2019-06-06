@@ -6,7 +6,7 @@
 #    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/06/01 23:11:51 by wahasni          ###   ########.fr        #
+#    Updated: 2019/06/06 03:36:15 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,6 @@ LDLIBS		= -lft
 SRC_NAME 	= ft_count_word.c\
 ft_handle_map.c\
 ft_handle_piece.c\
-ft_init.c\
 ft_init_player.c\
 ft_isndigit.c\
 main.c\

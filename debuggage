@@ -1,0 +1,4 @@
+/* __attribute__((destructor)) int end (){
+**	while(1);
+** };
+*/

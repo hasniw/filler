@@ -6,36 +6,38 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/06 01:49:37 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 03:35:46 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/filler.h"
 
-int		filler_end(t_args *args, int end)
+static void	ft_init(t_args *args)
+{
+	args->line = NULL;
+	args->tab = NULL;
+}
+
+int			filler_end(t_args *args, int end)
 {
 	if (end == 1)
 	{
 		print_pos(args);
-		// free(&args->piece);
 		args->point.x = 0;
 		args->point.y = 0;
 		args->point.min = args->map.width * args->map.height;
 	}
 	else
-	{
-		// free(args);
 		ft_putstr("0 0\n");
-	}
 	return (end);
 }
 
-int	print_pos(t_args *args)
+int			print_pos(t_args *args)
 {
-	int i;
-	int cnt;
-	int x;
-	int y;
+	int		i;
+	int		cnt;
+	int		x;
+	int		y;
 
 	i = 0;
 	while (i < args->piece.cnt)
@@ -58,7 +60,7 @@ int	print_pos(t_args *args)
 }
 
 /*
-** LINE TEST : 
+** LINE TEST :
 **     $$$ exec p2 : [./wahasni.filler]
 **
 **     Plateau 2 30:
@@ -80,7 +82,7 @@ int	print_pos(t_args *args)
 **     ..***..
 */
 
-int 		main(void)
+int			main(void)
 {
 	t_args	args;
 	int		end;
@@ -93,11 +95,7 @@ int 		main(void)
 	{
 		if (ft_handle_map(&args))
 		{
-			if (args.map.board[0])
-			{
-				free_board(args.map.board, args.map.height);
-			}
-			// ft_strdel(args.piece.board);
+			free_board(args.map.board, args.map.height);
 			return (1);
 		}
 		if (ft_handle_piece(&args))
@@ -108,12 +106,7 @@ int 		main(void)
 			return (1);
 		}
 		end = ft_resolve(&args);
-		free_board(args.piece.board, args.piece.height);		
+		free_board(args.piece.board, args.piece.height);
 	}
-	
-	/* __attribute__((destructor)) int end (){
-	**	while(1);
-	** };
-	*/
 	return (0);
 }
