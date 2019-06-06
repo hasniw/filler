@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/06 01:31:43 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 01:49:37 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,6 @@ int	print_pos(t_args *args)
 		}
 		i++;
 	}
-	// printf("args->point.x = %d\n", args->point.x);
-	// printf("args->point.y = %d\n", args->point.y);
-	// printf("piece.p[cnt].x = %d\n", args->piece.p[cnt].x);
-	// printf("piece.p[cnt].y = %d\n", args->piece.p[cnt].y);
 	x = args->point.x - args->piece.p[cnt].x;
 	y = args->point.y - args->piece.p[cnt].y;
 	ft_putstr(ft_itoa(y));
@@ -114,11 +110,10 @@ int 		main(void)
 		end = ft_resolve(&args);
 		free_board(args.piece.board, args.piece.height);		
 	}
-	// printf("END OF MAIN !!!!\n");
-	// printf("map height in main : %d\n", args.map.height);
 	
-	// __attribute__((destructor)) int end (){
-	// while(1);
-	// };
+	/* __attribute__((destructor)) int end (){
+	**	while(1);
+	** };
+	*/
 	return (0);
 }
