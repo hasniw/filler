@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/06 03:35:46 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 10:18:22 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int			main(void)
 		}
 		if (ft_handle_piece(&args))
 		{
-			if (args.map.board)
-				free_board(args.map.board, args.map.height);
+			// printf("POIPOIPOI\n");
+			free_board(args.map.board, args.map.height);
 			free_board(args.piece.board, args.piece.height);
 			return (1);
 		}

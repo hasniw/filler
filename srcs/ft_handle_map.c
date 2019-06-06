@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/06 02:34:15 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/06 10:14:59 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ static int	ft_map_assign(t_args *args)
 		args->map.board[i++] = ft_strdup(args->line + 4);
 		ft_strdel(&args->line);
 	}
-	args->map.board[i] = NULL;
 	return (0);
 }
 
@@ -119,7 +118,7 @@ int			ft_handle_map(t_args *args)
 	if (ft_check_plateau(args))
 		return (1);
 	if (!(args->map.board = (char**)malloc(sizeof(char*)
-		* args->map.height + 1)))
+		* args->map.height)))
 		return (1);
 	if (ft_check_first_line(args))
 		return (1);
