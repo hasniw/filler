@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/07 00:55:50 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/08 23:41:16 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ static void	ft_init(t_args *args)
 {
 	args->line = NULL;
 	args->tab = NULL;
+	args->map.board = NULL;
+	args->piece.board = NULL;
+	args->piece.p = NULL;
 }
 
 int			filler_end(t_args *args, int end)
@@ -95,7 +98,7 @@ int			main(void)
 	{
 		if (ft_handle_map(&args))
 		{
-			free_board(args.map.board, args.map.height);
+			//free_board(args.map.board, args.map.height);
 			return (1);
 		}
 		if (ft_handle_piece(&args))
