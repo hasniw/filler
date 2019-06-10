@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/09 23:09:06 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/10 02:46:57 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	ft_check_line(t_args *args, int i)
 		{
 			while (i > 0)
 				free(args->piece.board[--i]);
+			args->free = 0;
 			return (free_line(&args->line, 1));
 		}
 		if (args->line[j] == '*')
@@ -73,6 +74,7 @@ static int	ft_piece_assign(t_args *args)
 				free(args->line);
 			while (i > 0)
 				free(args->map.board[--i]);
+			args->free = 0;
 			return (1);
 		}
 		if (ft_check_line(args, i))
