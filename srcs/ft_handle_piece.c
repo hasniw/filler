@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/10 02:46:57 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/11 01:00:14 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,18 @@ static int	ft_check_line(t_args *args, int i)
 	int j;
 
 	j = 0;
+	if (ft_strlen(args->line) != (size_t)args->piece.width)
+	{
+		while (i > 0)
+			ft_strdel(&args->piece.board[--i]);
+		return (free_line(&args->line, 1));
+	}	
 	while (args->line[j])
 	{
-		if ((args->line[j] != '.' && args->line[j] != '*')
-			|| (ft_strlen(args->line) != (size_t)args->piece.width))
+		if (args->line[j] != '.' && args->line[j] != '*')
 		{
 			while (i > 0)
-				free(args->piece.board[--i]);
-			args->free = 0;
+				ft_strdel(&args->piece.board[--i]);
 			return (free_line(&args->line, 1));
 		}
 		if (args->line[j] == '*')
@@ -71,10 +75,9 @@ static int	ft_piece_assign(t_args *args)
 		if ((ret = get_next_line(0, &args->line)) <= 0)
 		{
 			if (ret == 0)
-				free(args->line);
+				ft_strdel(&args->line);
 			while (i > 0)
-				free(args->map.board[--i]);
-			args->free = 0;
+				ft_strdel(&args->map.board[--i]);
 			return (1);
 		}
 		if (ft_check_line(args, i))
@@ -116,11 +119,11 @@ int			ft_handle_piece(t_args *args)
 	if (ft_check_first_line(args))
 		return (1);
 	if (!(args->piece.board = (char**)malloc(sizeof(char*) *
-			args->piece.height + 1)))
+			args->piece.height)))
 		return (1);
-	args->free = 1;
 	if (ft_piece_assign(args))
 		return (1);
+	args->free = 1;
 	if (!(args->piece.p = (t_point*)malloc(sizeof(t_point) *
 			args->piece.cnt + 1)))
 		return (1);
