@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:14:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/08 23:41:16 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/10 01:06:29 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,11 +96,9 @@ int			main(void)
 		return (1);
 	while (end == 1)
 	{
+		args.free = 0;
 		if (ft_handle_map(&args))
-		{
-			//free_board(args.map.board, args.map.height);
 			return (1);
-		}
 		if (ft_handle_piece(&args))
 		{
 			free_all(args);

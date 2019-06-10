@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/07 00:56:13 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/10 02:28:40 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct	s_args
 	char		**tab;
 	int			x;
 	int			y;
+	int			free;
 	t_map		map;
 	t_piece		piece;
 	t_point		point;
