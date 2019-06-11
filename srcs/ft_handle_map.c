@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/11 01:00:13 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/11 02:27:32 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,14 @@ int			ft_handle_map(t_args *args)
 		* args->map.height)))
 		return (1);
 	if (ft_check_first_line(args))
+	{
+		free(args->map.board);
 		return (1);
+	}
 	if (ft_map_assign(args))
+	{
+		free(args->map.board);
 		return (1);
+	}
 	return (0);
 }

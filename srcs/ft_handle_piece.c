@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 19:23:13 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/11 01:00:14 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/11 02:01:12 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,10 @@ int			ft_handle_piece(t_args *args)
 			args->piece.height)))
 		return (1);
 	if (ft_piece_assign(args))
+	{
+		free(args->piece.board);
 		return (1);
+	}
 	args->free = 1;
 	if (!(args->piece.p = (t_point*)malloc(sizeof(t_point) *
 			args->piece.cnt + 1)))
