@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:59:43 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/10 00:54:28 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/11 05:52:55 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	ft_check_line(t_args *args)
 		return (1);
 	if (ft_strcmp(":", args->tab[3]))
 		return (1);
-	if (ft_strcmp("[./wahasni.filler]", args->tab[4]))
+	if (args->tab[4][0] == '[' && !ft_strstr(args->tab[4], "./wahasni.filler]"))
 		return (1);
 	return (0);
 }
@@ -55,7 +55,7 @@ int			ft_init_player(t_args *args, char *line)
 	if (ft_count_word(line, ' ') != 4)
 	{
 		ft_strdel(&line);
-        return (1);
+		return (1);
 	}
 	args->tab = ft_strsplit(line, ' ');
 	ft_strdel(&line);
