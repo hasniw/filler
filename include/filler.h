@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/10 02:28:40 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/11 21:45:39 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <math.h>
 # include <fcntl.h>
 
-typedef struct  s_point
+typedef struct	s_point
 {
 	int			i;
 	int			x;
