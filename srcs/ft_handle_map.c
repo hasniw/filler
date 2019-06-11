@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/11 02:27:32 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/11 07:35:14 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,10 @@ static int	ft_check_plateau(t_args *args)
 	args->tab = ft_strsplit(args->line, ' ');
 	ft_strdel(&args->line);
 	if (ft_strcmp("Plateau", args->tab[0]))
+	{
+		free_split(args->tab);
 		return (1);
+	}
 	args->map.height = ft_atoi(args->tab[1]);
 	args->map.width = ft_atoi(args->tab[2]);
 	free_split(args->tab);
@@ -118,7 +121,7 @@ int			ft_handle_map(t_args *args)
 	if (ft_check_plateau(args))
 		return (1);
 	if (!(args->map.board = (char**)malloc(sizeof(char*)
-		* args->map.height)))
+		* args->map.height + 1)))
 		return (1);
 	if (ft_check_first_line(args))
 	{

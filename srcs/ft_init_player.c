@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:59:43 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/11 05:52:55 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/11 07:39:45 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,15 +53,12 @@ int			ft_init_player(t_args *args, char *line)
 		return (1);
 	}
 	if (ft_count_word(line, ' ') != 4)
-	{
-		ft_strdel(&line);
-		return (1);
-	}
+		free_line(&args->line, 1);
 	args->tab = ft_strsplit(line, ' ');
 	ft_strdel(&line);
 	if (ft_check_line(args))
 	{
-		ft_strdel(args->tab);
+		free_split(args->tab);
 		return (1);
 	}
 	if (ft_assign_player(args))
