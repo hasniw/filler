@@ -5,114 +5,55 @@
 #                                                     +:+ +:+         +:+      #
 #    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2019/04/08 09:48:30 by yabecret          #+#    #+#              #
-#    Updated: 2019/06/06 03:36:15 by wahasni          ###   ########.fr        #
+#    Created: 2019/04/08 09:48:30 by wahasni           #+#    #+#              #
+#    Updated: 2019/06/12 04:06:16 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-# Executable
-NAME	=	wahasni.filler
+NAME = wahasni.filler
 
-# Compilation
-CC			=	@cc
-CFLAGS		=	-Wall -Wextra -Werror
-CPPFLAGS	=	-Iincludes
+CC = gcc
 
-# Files && Objs
+FLAGS = -Wall -Werror -Wextra
 
-SRC_PATH	= srcs
+SRCDIR = ./srcs/
 
-OBJ_PATH	= objs
+INCDIR = ./include/
 
-INC_PATH	= include
+LIB = ./libft
 
-LIB			= ./libft/
-LDFLAGS		= -Llibft
-LDLIBS		= -lft
+SRCS = $(SRCDIR)check.c\
+	   $(SRCDIR)ft_count_word.c\
+	   $(SRCDIR)ft_free.c\
+	   $(SRCDIR)ft_handle_map.c\
+	   $(SRCDIR)ft_handle_piece.c\
+	   $(SRCDIR)ft_init_player.c\
+	   $(SRCDIR)ft_isndigit.c\
+	   $(SRCDIR)ft_resolve.c\
+	   $(SRCDIR)main.c\
 
-SRC_NAME 	= ft_count_word.c\
-ft_handle_map.c\
-ft_handle_piece.c\
-ft_init_player.c\
-ft_isndigit.c\
-main.c\
-ft_free.c\
-check.c\
-ft_resolve.c\
+OBJS = $(SRCS:.c=.o)
 
-OBJ_NAME = $(SRC_NAME:.c=.o)
+$(NAME): $(OBJS)
+	@make -C $(LIB)
+	@$(CC) -I $(INCDIR) $(FLAGS) -o $@ $(OBJS) $(LIB)/libft.a
+	@echo "make $(NAME)\033[0;32m ✓\033[0m"
 
-SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+all: $(NAME)
 
-OBJ = $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
+%.o: %.c $(INCDIR)/filler.h
+	@$(CC) -o $@ -c $< -I $(INCDIR) $(FLAGS)
 
-# **************************************************************************** #
+clean:
+	@/bin/rm -rf $(OBJS)
+	@make -C $(LIB) clean
+	@echo "rm *.o\033[0;32m ✓\033[0m"
 
-# SPECIAL CHARS
+fclean: clean
+	@/bin/rm -rf $(NAME)
+	@make -C $(LIB) fclean
+	@echo "rm $(NAME)\033[0;32m ✓\033[0m"
 
-LOG_CLEAR		= \033[2K
-LOG_UP			= \033[A
-LOG_NOCOLOR		= \033[0m
-LOG_BOLD		= \033[1m
-LOG_UNDERLINE	= \033[4m
-LOG_BLINKING	= \033[5m
-LOG_BLACK		= \033[1;30m
-LOG_RED			= \033[1;31m
-LOG_GREEN		= \033[1;32m
-LOG_YELLOW		= \033[1;33m
-LOG_BLUE		= \033[1;34m
-LOG_VIOLET		= \033[1;35m
-LOG_CYAN		= \033[1;36m
-LOG_WHITE		= \033[1;37m
+re: fclean all
 
-# Protect
-
-.PHONY:	all clean fclean re
-
-# **************************************************************************** #
-
-# RULES
-
-# Main rules
-all				:  $(OBJ_PATH) $(NAME)
-
-re				: 	fclean all
-
-# Compilation rules
-$(OBJ_PATH)		:
-				 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-
-
-$(NAME)			:	$(OBJ)
-					@make -C $(LIB)
-					@echo "-------------------------------------------------------------"
-					@echo "|                  Debut de la compilation                  |"
-					@echo "|                            42                             |"
-					@echo "|                          filler                           |"
-					@echo "|                       compilation :                       |"
-					@echo "|                                                           |"
-					@$(CC) $(CFLAGS) $(CPPFLAGS) -g -o $@ $^ $(LIB)libft.a
-					@echo "|                       make $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR)             |"
-					@echo "-------------------------------------------------------------"
-
-$(OBJ_PATH)/%.o:	$(SRC_PATH)/%.c
-					$(CC) -g $(CFLAGS) $(CPPFLAGS) -c $< -o $@
-
-# Clean rules
-clean			:
-					@cd libft && $(MAKE) clean
-					@echo "-------------------------------------------------------------"
-					@rm -rf $(OBJ_PATH)
-					@echo "|                    Removes all .o & $(OBJ_PATH)/$(LOG_GREEN) ✓ $(LOG_NOCOLOR) !            |"
-					@echo "-------------------------------------------------------------"
-
-fclean			: 	clean
-					@cd libft && $(MAKE) fclean
-					@echo "-------------------------------------------------------------"
-					@rm -f $(NAME)
-					@echo "|                    Remove $(NAME)$(LOG_GREEN) ✓ $(LOG_NOCOLOR) !            |"
-					@echo "-------------------------------------------------------------"
-norme:
-					@norminette $(SRC)
-					@norminette $(INC_PATH)/
-# **************************************************************************** #
+.PHONY: all clean fclean re

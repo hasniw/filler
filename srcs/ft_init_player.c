@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:59:43 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/11 07:39:45 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/12 04:07:44 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/filler.h"
+#include "filler.h"
 
 static int	ft_assign_player(t_args *args)
 {
@@ -37,7 +37,7 @@ static int	ft_check_line(t_args *args)
 		return (1);
 	if (ft_strcmp(":", args->tab[3]))
 		return (1);
-	if (args->tab[4][0] == '[' && !ft_strstr(args->tab[4], "./wahasni.filler]"))
+	if (args->tab[4][0] == '[' && !ft_strstr(args->tab[4], "/wahasni.filler]"))
 		return (1);
 	return (0);
 }

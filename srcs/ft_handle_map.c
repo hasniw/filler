@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 18:29:09 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/11 07:35:14 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/12 04:07:28 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/filler.h"
+#include "filler.h"
 
 static int	ft_check_first_line(t_args *args)
 {

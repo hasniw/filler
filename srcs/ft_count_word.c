@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/15 23:21:48 by wahasni           #+#    #+#             */
-/*   Updated: 2019/05/21 14:58:27 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/12 04:07:15 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/filler.h"
+#include "filler.h"
 
 int	ft_count_word(char *str, char c)
 {

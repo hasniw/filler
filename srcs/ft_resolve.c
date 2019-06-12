@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 23:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/06 02:10:08 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/12 04:19:26 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/filler.h"
+#include "filler.h"
 
 double		calc_min(t_args *args, t_point *t, t_point *p, t_point *ennemy)
 {

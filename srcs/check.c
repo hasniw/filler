@@ -6,11 +6,11 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 01:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/02 21:36:10 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/12 04:07:09 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/filler.h"
+#include "filler.h"
 
 int	check_good(t_args *args)
 {

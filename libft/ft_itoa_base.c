@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wahasni <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/13 19:23:49 by wahasni           #+#    #+#             */
-/*   Updated: 2019/02/12 04:17:41 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/11 22:25:06 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ char					*ft_lltoa_base(long long n, long long base)
 	return (str);
 }
 
-char			*ft_uitoa_base(unsigned int	n, int base)
+char					*ft_uitoa_base(unsigned int n, int base)
 {
-	size_t		i;
-	size_t		n_size;
-	static char	str[15];
-	char		*strbase;
+	size_t				i;
+	size_t				n_size;
+	static char			str[15];
+	char				*strbase;
 
 	i = 0;
 	ft_bzero(str, 15);
@@ -57,13 +57,13 @@ char			*ft_uitoa_base(unsigned int	n, int base)
 	return (str);
 }
 
-char				*ft_itoa_base(int n, int base)
+char					*ft_itoa_base(int n, int base)
 {
-	size_t			i;
-	size_t			n_size;
-	static char		str[15];
-	char			*strbase;
-	unsigned int	abs;
+	size_t				i;
+	size_t				n_size;
+	static char			str[15];
+	char				*strbase;
+	unsigned int		abs;
 
 	i = 0;
 	ft_bzero(str, 15);
@@ -83,12 +83,12 @@ char				*ft_itoa_base(int n, int base)
 	return (str);
 }
 
-char				*ft_itoa(int n)
+char					*ft_itoa(int n)
 {
-	size_t			i;
-	size_t			n_size;
-	static char		str[12];
-	unsigned int	abs;
+	size_t				i;
+	size_t				n_size;
+	static char			str[12];
+	unsigned int		abs;
 
 	i = 0;
 	ft_bzero(str, 12);
@@ -102,15 +102,4 @@ char				*ft_itoa(int n)
 		abs /= 10;
 	}
 	return (str);
-}
-
-#include <stdio.h>
-
-int main(void)
-{
-	printf("%s\n", ft_lltoa_base(78452, 8));
-	printf("%s\n", ft_itoa_base(-78452, 8));
-	printf("%s\n", ft_itoa(-101125));
-	printf("%ld\n", -9223372036854775807);
-	return (0);
 }
