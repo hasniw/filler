@@ -6,7 +6,7 @@
 #    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 18:59:51 by wahasni           #+#    #+#              #
-#    Updated: 2019/06/13 05:43:17 by wahasni          ###   ########.fr        #
+#    Updated: 2019/06/13 22:58:53 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ SRC = ft_abs.c\
 
 OBJ = $(SRC:.c=.o)
 
-HEADER = includes
+HEADER = include
 
 FLAGS = -Wall -Wextra -Werror
 

@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/11 01:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/13 04:55:18 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/13 23:44:12 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	is_good(t_args *args, t_point *p, t_point *t)
 	{
 		y1 = (args->piece.p[i].y - p->y + t->y);
 		x1 = (args->piece.p[i].x - p->x + t->x);
-		if (i == p->i) //Skip point de contact
+		if (i == p->i)
 			i++;
 		else
 		{

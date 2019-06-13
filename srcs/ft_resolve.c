@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/19 23:28:44 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/13 05:57:52 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/14 01:01:37 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ double		calc_min(t_args *args, t_point *t, t_point *p, t_point *ennemy)
 	{
 		if (i != p->i)
 		{
-			res = ft_pow((ennemy->x - (args->piece.p[i].x - p->x + t->x)), 2); //Position ennemie, * dans la piece, point sur lequel on est et tracker 
+			res = ft_pow((ennemy->x - (args->piece.p[i].x - p->x + t->x)), 2);
 			res += ft_pow((ennemy->y - (args->piece.p[i].y - p->y + t->y)), 2);
 			res = ft_sqrt(res);
 			min = res < min ? res : min;
