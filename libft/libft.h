@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/14 14:09:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/04/14 15:51:44 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/13 05:43:18 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ char				*ft_strmap(char const *s, char(*f)(char));
 void				*ft_memalloc(size_t size);
 int					ft_nbrlen(int nbr, int base);
 char				*ft_itoa(int n);
+double				ft_pow(double nb, int pow);
+double				ft_sqrt(double nb);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 void				ft_lstadd(t_list **alst, t_list *new);
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));

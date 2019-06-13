@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/18 01:34:30 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/12 04:07:21 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/13 04:34:34 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,7 @@ void	free_all(t_args args)
 {
 	free_board(args.map.board, args.map.height);
 	if (args.free == 1)
-	{
 		free_board(args.piece.board, args.piece.height);
-	}
 	else if (args.free == 2)
 	{
 		free_board(args.piece.board, args.piece.height);

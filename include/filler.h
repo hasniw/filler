@@ -6,7 +6,7 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/18 04:15:25 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/11 21:45:39 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/13 05:45:48 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define FILLER_H
 
 # include "../libft/libft.h"
-# include <stdio.h>
-# include <math.h>
 # include <fcntl.h>
 
 typedef struct	s_point
@@ -49,8 +47,6 @@ typedef struct	s_args
 	char		ennemy;
 	char		*line;
 	char		**tab;
-	int			x;
-	int			y;
 	int			free;
 	t_map		map;
 	t_piece		piece;

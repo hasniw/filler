@@ -6,7 +6,7 @@
 #    By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/16 18:59:51 by wahasni           #+#    #+#              #
-#    Updated: 2019/04/14 15:59:18 by wahasni          ###   ########.fr        #
+#    Updated: 2019/06/13 05:43:17 by wahasni          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ SRC = ft_abs.c\
 	  ft_memmove.c\
 	  ft_memset.c\
 	  ft_nbrlen.c\
+	  ft_pow.c\
 	  ft_putchar.c\
 	  ft_putchar_fd.c\
 	  ft_putendl.c\
@@ -74,6 +75,7 @@ SRC = ft_abs.c\
 	  ft_strsub.c\
 	  ft_strtrim.c\
 	  ft_swap.c\
+	  ft_sqrt.c\
 	  ft_tolower.c\
 	  ft_toupper.c\
 	  ft_wordcount.c\
