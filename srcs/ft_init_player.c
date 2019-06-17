@@ -6,25 +6,26 @@
 /*   By: wahasni <wahasni@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/14 15:59:43 by wahasni           #+#    #+#             */
-/*   Updated: 2019/06/14 01:34:52 by wahasni          ###   ########.fr       */
+/*   Updated: 2019/06/18 00:55:10 by wahasni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "filler.h"
 
-static int	ft_attribute_player(t_args *args)
-{
-	args->me = 'O';
-	args->ennemy = 'X';
-	return (0);
-}
-
 static int	ft_assign_player(t_args *args)
 {
 	if (args->tab[2] && ft_strcmp(args->tab[2], "p1") == 0)
-		return (ft_attribute_player(args));
+	{
+		args->me = 'O';
+		args->ennemy = 'X';
+		return (0);
+	}
 	else if (args->tab[2] && ft_strcmp(args->tab[2], "p2") == 0)
-		return (ft_attribute_player(args));
+	{
+		args->me = 'X';
+		args->ennemy = 'O';
+		return (0);
+	}
 	return (1);
 }
 
